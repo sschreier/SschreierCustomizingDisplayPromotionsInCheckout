@@ -1,0 +1,88 @@
+{% sw_extends '@Storefront/storefront/component/line-item/type/discount.html.twig' %}
+
+{% set promotionId = lineItem.payload.promotionId %}
+{% set promotionArray = sschreier_get_promotion_data_by_promotion_id(promotionId, context) %}
+{% set promotion = promotionArray['promotion'] %}
+{% set promotionCustomFields = promotion.translated.customFields %}
+
+{% block component_line_item_type_discount_image_inner %}
+    {% block component_line_item_type_discount_image_inner_customizingdisplaypromotionsincheckout_before %}{% endblock %}
+
+    {% set promotionImageId = promotionCustomFields['sschreier_promotion_image'] %}
+
+    {% if promotionImageId %}
+        {% block component_line_item_type_discount_image_inner_customizingdisplaypromotionsincheckout_custom %}
+            {% set promotionMediaCollection = searchMedia([promotionImageId], context.context) %}
+            {% set promotionMedia = promotionMediaCollection.get(promotionImageId) %}
+
+            {% set promotionLabel = lineItem.label|trans|sw_sanitize %}
+            {% set promotionLabel = promotionLabel !== '' ? promotionLabel : lineItem.label %}
+
+            {% block component_line_item_type_discount_image_inner_customizingdisplaypromotionsincheckout_custom_thumbnail %}
+                {% sw_thumbnails 'promotion-thumbnails' with {
+                    media: promotionMedia,
+                    sizes: {
+                        default: '100px'
+                    },
+                    attributes: {
+                        class: 'img-fluid line-item-img',
+                        alt: (promotionMedia.translated.alt ?: promotionLabel),
+                        title: (promotionMedia.translated.title ?: promotionLabel),
+                        loading: 'lazy'
+                    }
+                } %}
+            {% endblock %}
+        {% endblock %}
+    {% else %}
+        {% block component_line_item_type_discount_image_inner_customizingdisplaypromotionsincheckout_default_before %}{% endblock %}
+
+        {{ parent() }}
+
+        {% block component_line_item_type_discount_image_inner_customizingdisplaypromotionsincheckout_default_after %}{% endblock %}
+    {% endif %}
+
+    {% block component_line_item_type_discount_image_inner_customizingdisplaypromotionsincheckout_after %}{% endblock %}
+{% endblock %}
+
+{% block component_line_item_type_discount_label %}
+    {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_before %}{% endblock %}
+
+    {% set truncateLabel = config('SschreierCustomizingDisplayPromotionsInCheckout.config.truncateLabel') %}
+    {% set truncateLabelNumberCharacters = config('SschreierCustomizingDisplayPromotionsInCheckout.config.truncateLabelNumberCharacters') %}
+    {% set label = lineItem.label|trans|sw_sanitize %}
+    {% set label = label !== '' ? label : lineItem.label %}
+
+    {% if truncateLabel %}
+        {% if truncateLabelNumberCharacters === 60 %}
+            {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_default_before %}{% endblock %}
+
+            {{ parent() }}
+
+            {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_default_after %}{% endblock %}
+        {% else %}
+            {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_custom_truncation %}
+                <div class="line-item-label">
+                    {{ label|u.truncate(truncateLabelNumberCharacters, '...', false)|raw }}
+                </div>
+            {% endblock %}
+        {% endif %}
+    {% else %}
+        {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_custom_no_truncation %}
+            <div class="line-item-label">
+                {{ label|raw }}
+            </div>
+        {% endblock %}
+    {% endif %}
+
+    {% set promotionDescription = promotionCustomFields['sschreier_promotion_description'] %}
+
+    {% if promotionDescription %}
+        {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_description %}
+            <div class="line-item-promotion-description">
+                {{ promotionDescription|raw }}
+            </div>
+        {% endblock %}
+    {% endif %}
+
+    {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_after %}{% endblock %}
+{% endblock %}

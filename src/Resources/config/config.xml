@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>general settings</title>
+        <title lang="de-DE">Allgemeine Einstellungen</title>
+
+        <input-field type="bool">
+            <name>truncateLabel</name>
+            <label>truncate the name of the promotion</label>
+            <label lang="de-DE">Namen der Aktion kürzen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="int">
+            <name>truncateLabelNumberCharacters</name>
+            <label>number of characters from which the name should be truncated</label>
+            <label lang="de-DE">Anzahl an Zeichen, ab denen der Name gekürzt werden soll</label>
+            <defaultValue>60</defaultValue>
+            <placeholder>60</placeholder>
+        </input-field>
+    </card>
+</config>
