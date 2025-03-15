@@ -1,7 +1,7 @@
 {
   "name": "sschreier/sschreiercustomizingdisplaypromotionsincheckout",
-  "description": "customize the display of promotions in the checkout",
-  "version": "1.0.2",
+  "description": "customizing the display of promotions in the checkout",
+  "version": "1.0.3",
   "type": "shopware-platform-plugin",
   "license": "GPL-3.0-or-later",
   "authors": [
@@ -20,7 +20,7 @@
     "copyright": "Sebastian Schreier",
     "label": {
       "de-DE": "Individualisieren der Darstellung von Aktionen im Checkout",
-      "en-GB": "Customizing the display of promotions in the checkout"
+      "en-GB": "customizing the display of promotions in the checkout"
     },
     "description": {
       "de-DE": "Mit der Erweiterung kann die Darstellung von Aktionen im Checkout individualisiert werden. Es ist zum Beispiel möglich, bei der Aktion ein alternatives Bild auszuwählen, das anstatt des Marketing-Icons im Checkout angezeigt werden soll. Außerdem kann eine Beschreibung hinterlegt werden, die unterhalb des Namens der Aktion angezeigt wird und beispielsweise die Einschränkungen der Aktion noch einmal benennt. Des weiteren kann man innerhalb der Konfiguration der Erweiterung auswählen, ob der Name der Aktion wie im Standard von Shopware 6 nach 60 Zeichen gekürzt werden soll und wenn ja, kann alternativ auch ein höherer Wert für die Kürzung ausgewählt werden.",

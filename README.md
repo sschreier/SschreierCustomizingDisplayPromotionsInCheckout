@@ -13,7 +13,7 @@ Furthermore, you can _select within_ the _configuration of the extension whether
 - select the number of characters from which the name should be truncated
 
 ## How to install the extension
-### via console (recommended)
+### via zip and console (recommended)
 1. Download the latest _SschreierCustomizingDisplayPromotionsInCheckout-master.zip_.
 2. Unzip the zip file and rename the folder to _SschreierCustomizingDisplayPromotionsInCheckout_.
 3. Move the folder to the project folder _custom/plugins/_ .
@@ -36,7 +36,15 @@ bin/console plugin:install --activate SschreierCustomizingDisplayPromotionsInChe
 ],
 ```
 
-2. Connect to the console via ssh and install the plugin source code via the command
+2. Connect to the console via ssh and install the plugin via the command
+```
+composer require sschreier/sschreiercustomizingdisplaypromotionsincheckout
+bin/console plugin:refresh
+bin/console plugin:install --activate SschreierCustomizingDisplayPromotionsInCheckout
+```
+
+### via https://packagist.org
+- Connect to the console via ssh and install the plugin via the command
 ```
 composer require sschreier/sschreiercustomizingdisplaypromotionsincheckout
 bin/console plugin:refresh
