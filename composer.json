@@ -1,43 +1,43 @@
 {
-  "name": "sschreier/sschreiercustomizingdisplaypromotionsincheckout",
-  "description": "customizing the display of promotions in the checkout",
-  "version": "1.0.3",
-  "type": "shopware-platform-plugin",
-  "license": "GPL-3.0-or-later",
-  "authors": [
-    {
-      "name": "Sebastian Schreier",
-      "role": "Manufacturer"
-    }
-  ],
-  "require": {
-    "shopware/core": "~6.6.0",
-    "shopware/storefront": "~6.6.0"
-  },
-  "extra": {
-    "shopware-plugin-class": "Sschreier\\CustomizingDisplayPromotionsInCheckout\\SschreierCustomizingDisplayPromotionsInCheckout",
-    "plugin-icon": "src/Resources/config/plugin.png",
-    "copyright": "Sebastian Schreier",
-    "label": {
-      "de-DE": "Individualisieren der Darstellung von Aktionen im Checkout",
-      "en-GB": "customizing the display of promotions in the checkout"
+    "name": "sschreier/sschreiercustomizingdisplaypromotionsincheckout",
+    "description": "customizing the display of promotions in the checkout",
+    "version": "1.1.0",
+    "type": "shopware-platform-plugin",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Sebastian Schreier",
+            "role": "Manufacturer"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.7.0",
+        "shopware/storefront": "~6.7.0"
     },
-    "description": {
-      "de-DE": "Mit der Erweiterung kann die Darstellung von Aktionen im Checkout individualisiert werden. Es ist zum Beispiel möglich, bei der Aktion ein alternatives Bild auszuwählen, das anstatt des Marketing-Icons im Checkout angezeigt werden soll. Außerdem kann eine Beschreibung hinterlegt werden, die unterhalb des Namens der Aktion angezeigt wird und beispielsweise die Einschränkungen der Aktion noch einmal benennt. Des weiteren kann man innerhalb der Konfiguration der Erweiterung auswählen, ob der Name der Aktion wie im Standard von Shopware 6 nach 60 Zeichen gekürzt werden soll und wenn ja, kann alternativ auch ein höherer Wert für die Kürzung ausgewählt werden.",
-      "en-GB": "With the extension, the display of promotions in the checkout can be customized. For example, it is possible to select an alternative image at the promotion to be displayed in the checkout instead of the marketing icon. In addition, a description can be entered that is displayed below the name of the promotion and, for example, states the restrictions of the promotion again. Furthermore, you can select within the configuration of the extension whether the name of the promotion should be truncated to 60 characters as in the Shopware 6 standard and if so, you can alternatively select a higher value for the truncating."
+    "extra": {
+        "shopware-plugin-class": "Sschreier\\CustomizingDisplayPromotionsInCheckout\\SschreierCustomizingDisplayPromotionsInCheckout",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "copyright": "Sebastian Schreier",
+        "label": {
+            "de-DE": "Individualisieren der Darstellung von Aktionen im Checkout",
+            "en-GB": "customizing the display of promotions in the checkout"
+        },
+        "description": {
+            "de-DE": "Mit der Erweiterung kann die Darstellung von Aktionen im Checkout individualisiert werden. Es ist zum Beispiel möglich, bei der Aktion ein alternatives Bild auszuwählen, das anstatt des Marketing-Icons im Checkout angezeigt werden soll. Außerdem kann eine Beschreibung hinterlegt werden, die unterhalb des Namens der Aktion angezeigt wird und beispielsweise die Einschränkungen der Aktion noch einmal benennt. Des weiteren kann man innerhalb der Konfiguration der Erweiterung auswählen, ob der Name der Aktion wie im Standard von Shopware 6 nach 60 Zeichen gekürzt werden soll und wenn ja, kann alternativ auch ein höherer Wert für die Kürzung ausgewählt werden.",
+            "en-GB": "With the extension, the display of promotions in the checkout can be customized. For example, it is possible to select an alternative image at the promotion to be displayed in the checkout instead of the marketing icon. In addition, a description can be entered that is displayed below the name of the promotion and, for example, states the restrictions of the promotion again. Furthermore, you can select within the configuration of the extension whether the name of the promotion should be truncated to 60 characters as in the Shopware 6 standard and if so, you can alternatively select a higher value for the truncating."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.sebastianschreier.de",
+            "en-GB": "https://www.sebastianschreier.de"
+        },
+        "supportLink": {
+            "de-DE": "https://www.sebastianschreier.de",
+            "en-GB": "https://www.sebastianschreier.de"
+        }
     },
-    "manufacturerLink": {
-      "de-DE": "https://www.sebastianschreier.de",
-      "en-GB": "https://www.sebastianschreier.de"
-    },
-    "supportLink": {
-      "de-DE": "https://www.sebastianschreier.de",
-      "en-GB": "https://www.sebastianschreier.de"
+    "autoload": {
+        "psr-4": {
+            "Sschreier\\CustomizingDisplayPromotionsInCheckout\\": "src/"
+        }
     }
-  },
-  "autoload": {
-    "psr-4": {
-      "Sschreier\\CustomizingDisplayPromotionsInCheckout\\": "src/"
-    }
-  }
 }

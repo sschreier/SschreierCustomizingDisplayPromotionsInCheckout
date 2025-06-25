@@ -7,7 +7,7 @@
         <input-field type="bool">
             <name>truncateLabel</name>
             <label>truncate the name of the promotion</label>
-            <label lang="de-DE">Namen der Aktion kürzen</label>
+            <label lang="de-DE">Name der Aktion kürzen</label>
             <defaultValue>true</defaultValue>
         </input-field>
 

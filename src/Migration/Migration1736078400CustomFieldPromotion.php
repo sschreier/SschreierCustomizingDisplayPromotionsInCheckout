@@ -36,7 +36,7 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
      */
     public function update(Connection $connection): void
     {
-        $customFieldSetId = $this->createCustomFieldSet($connection, self::FIELDSET_NAME, '{"label": {"de-DE": "Zusätzliche Einstellungen", "en-GB": "additional settings"}}');
+        $customFieldSetId = $this->createCustomFieldSet($connection, self::FIELDSET_NAME, '{"label": {"de-DE": "Zusätzliche Einstellungen", "en-GB": "additional settings"}, "translated": true}');
 
         $this->createCustomField($connection, $customFieldSetId, self::CUSTOMFIELD_IMAGE_NAME, CustomFieldTypes::MEDIA, '{"label": {"de-DE": "Alternatives Bild", "en-GB": "alternative image"}, "componentName": "sw-media-field", "customFieldType": "media", "customFieldPosition": 1}');
         $this->createCustomField($connection, $customFieldSetId, self::CUSTOMFIELD_DESCRIPTION_NAME, CustomFieldTypes::HTML, '{"label": {"de-DE": "Beschreibung", "en-GB": "description"}, "componentName": "sw-text-editor", "customFieldType": "textEditor", "customFieldPosition": 2}');
@@ -52,14 +52,16 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
     {
         $customFieldSetId = Uuid::randomBytes();
 
-        $customFieldSetStmt = $connection->prepare(self::getCustomFieldSetSql());
-        $customFieldSetStmt->executeStatement([
-            'id' => $customFieldSetId,
-            'name' => $name,
-            'config' => $config,
-            'position' => 1,
-            'created_at' => self::getDateTimeValue(),
-        ]);
+        $connection->executeStatement(
+            self::getCustomFieldSetSql(),
+            [
+                'id' => $customFieldSetId,
+                'name' => $name,
+                'config' => $config,
+                'position' => 1,
+                'created_at' => self::getDateTimeValue(),
+            ]
+        );
 
         return $customFieldSetId;
     }
@@ -68,8 +70,8 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
     {
         $customFieldId = Uuid::randomBytes();
 
-        $customFieldStmt = $connection->prepare(self::getCustomFieldSql());
-        $customFieldStmt->executeStatement(
+        $connection->executeStatement(
+            self::getCustomFieldSql(),
             [
                 'id' => $customFieldId,
                 'name' => $name,
@@ -87,8 +89,8 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
     {
         $customFieldRelationId = Uuid::randomBytes();
 
-        $customFieldRelationStmt = $connection->prepare(self::getCustomFieldRelationSql());
-        $customFieldRelationStmt->executeStatement(
+        $connection->executeStatement(
+            self::getCustomFieldRelationSql(),
             [
                 'id' => $customFieldRelationId,
                 'set_id' => $customFieldSetId,
@@ -100,7 +102,7 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
 
     protected static function getCustomFieldSetSql(): string
     {
-        return <<<'SQL'
+        return <<<SQL
             INSERT INTO `custom_field_set` (`id`, `name`, `config`, `active`, `app_id`, `position`, `global`, `created_at`, `updated_at`) VALUES
             (:id, :name, :config, 1, NULL, :position, 0, :created_at, NULL);
             SQL;
@@ -108,7 +110,7 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
 
     public static function getCustomFieldSql(): string
     {
-        return <<<'SQL'
+        return <<<SQL
                 INSERT INTO `custom_field` (`id`, `name`, `type`, `config`, `active`, `set_id`, `created_at`, `updated_at`, `allow_customer_write`) VALUES
                 (:id, :name, :fieldType, :config, 1, :set_id, :created_at, NULL, 1);
             SQL;
@@ -116,7 +118,7 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
 
     public static function getCustomFieldRelationSql(): string
     {
-        return <<<'SQL'
+        return <<<SQL
                 INSERT INTO `custom_field_set_relation` (`id`, `set_id`, `entity_name`, `created_at`, `updated_at`) VALUES
                 (:id, :set_id, :entity_name, :created_at, NULL);
             SQL;
