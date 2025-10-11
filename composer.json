@@ -1,7 +1,7 @@
 {
     "name": "sschreier/sschreiercustomizingdisplaypromotionsincheckout",
     "description": "customizing the display of promotions in the checkout",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "type": "shopware-platform-plugin",
     "license": "GPL-3.0-or-later",
     "authors": [
@@ -27,12 +27,12 @@
             "en-GB": "With the extension, the display of promotions in the checkout can be customized. For example, it is possible to select an alternative image at the promotion to be displayed in the checkout instead of the marketing icon. In addition, a description can be entered that is displayed below the name of the promotion and, for example, states the restrictions of the promotion again. Furthermore, you can select within the configuration of the extension whether the name of the promotion should be truncated to 60 characters as in the Shopware 6 standard and if so, you can alternatively select a higher value for the truncating."
         },
         "manufacturerLink": {
-            "de-DE": "https://www.sebastianschreier.de",
-            "en-GB": "https://www.sebastianschreier.de"
+            "de-DE": "https://www.web-solutions-dresden.de",
+            "en-GB": "https://www.web-solutions-dresden.de"
         },
         "supportLink": {
-            "de-DE": "https://www.sebastianschreier.de",
-            "en-GB": "https://www.sebastianschreier.de"
+            "de-DE": "https://www.web-solutions-dresden.de",
+            "en-GB": "https://www.web-solutions-dresden.de"
         }
     },
     "autoload": {

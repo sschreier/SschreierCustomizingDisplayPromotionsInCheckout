@@ -69,24 +69,24 @@ bin/console plugin:install --activate SschreierCustomizingDisplayPromotionsInChe
 
 ### default
 
-![default](https://www.sebastianschreier.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image6.jpg)
+![default](https://www.web-solutions-dresden.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image6.jpg)
 
 ### alternative image and description for a promotion in the shopping cart
 
-![alternative image and description for a promotion in the shopping cart](https://www.sebastianschreier.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image1.jpg)
+![alternative image and description for a promotion in the shopping cart](https://www.web-solutions-dresden.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image1.jpg)
 
 ### alternative image and description for a promotion on the checkout register page
 
-![alternative image and description for a promotion on the checkout register page](https://www.sebastianschreier.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image2.jpg)
+![alternative image and description for a promotion on the checkout register page](https://www.web-solutions-dresden.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image2.jpg)
 
 ### alternative image and description for a promotion on the confirm page
 
-![alternative image and description for a promotion on the confirm page](https://www.sebastianschreier.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image3.jpg)
+![alternative image and description for a promotion on the confirm page](https://www.web-solutions-dresden.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image3.jpg)
 
 ### extension configuration
 
-![extension configuration](https://www.sebastianschreier.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image4.jpg)
+![extension configuration](https://www.web-solutions-dresden.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image4.jpg)
 
 ### alternative image and description for a promotion within the custom fields of a promotion
 
-![alternative image and description for a promotion within the custom fields of a promotion](https://www.sebastianschreier.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image5.jpg)
+![alternative image and description for a promotion within the custom fields of a promotion](https://www.web-solutions-dresden.de/plugins/SschreierCustomizingDisplayPromotionsInCheckout/SschreierCustomizingDisplayPromotionsInCheckout-Image5.jpg)
