@@ -5,7 +5,6 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="Sschreier\CustomizingDisplayPromotionsInCheckout\Core\Twig\PromotionDataHelper" public="true">
-            <argument type="service" id="twig" />
             <argument type="service" id="promotion.repository"/>
 
             <tag name="twig.extension"/>

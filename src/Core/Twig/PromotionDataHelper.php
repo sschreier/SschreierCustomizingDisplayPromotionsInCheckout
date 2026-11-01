@@ -9,24 +9,17 @@ declare(strict_types=1);
 
 namespace Sschreier\CustomizingDisplayPromotionsInCheckout\Core\Twig;
 
+use Shopware\Core\Checkout\Promotion\PromotionEntity;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\System\SalesChannel\SalesChannelContext;
-use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class PromotionDataHelper extends AbstractExtension
 {
-    /** @var Environment */
-    private $twigEnvironment;
-
-    public function __construct(
-        Environment $twigEnvironment,
-        protected EntityRepository $promotionRepository
-    ) {
-        $this->twigEnvironment = $twigEnvironment;
+    public function __construct(private readonly EntityRepository $promotionRepository)
+    {
     }
 
     public function getFunctions(): array
@@ -39,17 +32,15 @@ class PromotionDataHelper extends AbstractExtension
         ];
     }
 
-    public function getPromotionDataByPromotionId($promotionId, SalesChannelContext $context): array
+    public function getPromotionDataByPromotionId(?string $promotionId, SalesChannelContext $context): ?PromotionEntity
     {
-        $promotion = $this->promotionRepository->search(
-            (new Criteria())
-                ->addFilter(new EqualsFilter('id', $promotionId)),
-            $context->getContext()
-        )->getEntities()->first();
+        if ($promotionId === null || $promotionId === '') {
+            return null;
+        }
 
-        $array = [];
-        $array['promotion'] = $promotion;
-
-        return $array;
+        return $this->promotionRepository
+            ->search(new Criteria([$promotionId]), $context->getContext())
+            ->getEntities()
+            ->first();
     }
 }

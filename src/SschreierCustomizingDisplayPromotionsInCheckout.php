@@ -9,20 +9,15 @@ declare(strict_types=1);
 
 namespace Sschreier\CustomizingDisplayPromotionsInCheckout;
 
+use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Shopware\Core\Framework\Plugin;
-use Shopware\Core\Framework\Plugin\Context\InstallContext;
 use Shopware\Core\Framework\Plugin\Context\UninstallContext;
 
 class SschreierCustomizingDisplayPromotionsInCheckout extends Plugin
 {
-    const CUSTOM_FIELD_SET_TECHNICAL_NAME = 'sschreier_promotion';
-
-    public function install(InstallContext $installContext): void
-    {
-        parent::install($installContext);
-    }
+    public const CUSTOM_FIELD_SET_TECHNICAL_NAME = 'sschreier_promotion';
 
     public function uninstall(UninstallContext $uninstallContext): void
     {
@@ -32,23 +27,23 @@ class SschreierCustomizingDisplayPromotionsInCheckout extends Plugin
             return;
         }
 
-        $this->removeCustomField($uninstallContext->getContext());
+        $this->removeCustomFieldSet($uninstallContext->getContext());
 
         parent::uninstall($uninstallContext);
     }
 
-    private function removeCustomField($uninstallContext): void
+    private function removeCustomFieldSet(Context $context): void
     {
         $customFieldSetRepository = $this->container->get('custom_field_set.repository');
 
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('name', self::CUSTOM_FIELD_SET_TECHNICAL_NAME));
 
-        $result = $customFieldSetRepository->searchIds($criteria, $uninstallContext);
+        $result = $customFieldSetRepository->searchIds($criteria, $context);
+        $primaryKeyData = $result->getPrimaryKeyData();
 
-        if ($result->getTotal() > 0) {
-            $data = $result->getDataOfId($result->firstId());
-            $customFieldSetRepository->delete([$data], $uninstallContext);
+        if ($primaryKeyData !== []) {
+            $customFieldSetRepository->delete($primaryKeyData, $context);
         }
     }
 }

@@ -1,20 +1,17 @@
 {% sw_extends '@Storefront/storefront/component/line-item/type/discount.html.twig' %}
 
-{% set promotionId = lineItem.payload.promotionId %}
-{% set promotionArray = sschreier_get_promotion_data_by_promotion_id(promotionId, context) %}
-{% set promotion = promotionArray['promotion'] %}
-{% set promotionCustomFields = promotion.translated.customFields %}
+{% set promotionId = lineItem.payload.promotionId|default(null) %}
+{% set promotion = sschreier_get_promotion_data_by_promotion_id(promotionId, context) %}
+{% set promotionCustomFields = promotion ? promotion.translated.customFields|default({}) : {} %}
 
 {% block component_line_item_type_discount_image_inner %}
     {% block component_line_item_type_discount_image_inner_customizingdisplaypromotionsincheckout_before %}{% endblock %}
 
-    {% set promotionImageId = promotionCustomFields['sschreier_promotion_image'] %}
+    {% set promotionImageId = promotionCustomFields['sschreier_promotion_image']|default(null) %}
+    {% set promotionMedia = promotionImageId ? searchMedia([promotionImageId], context.context).get(promotionImageId) : null %}
 
-    {% if promotionImageId %}
+    {% if promotionMedia %}
         {% block component_line_item_type_discount_image_inner_customizingdisplaypromotionsincheckout_custom %}
-            {% set promotionMediaCollection = searchMedia([promotionImageId], context.context) %}
-            {% set promotionMedia = promotionMediaCollection.get(promotionImageId) %}
-
             {% set promotionLabel = lineItem.label|trans|sw_sanitize %}
             {% set promotionLabel = promotionLabel !== '' ? promotionLabel : lineItem.label %}
 
@@ -52,20 +49,18 @@
     {% set label = lineItem.label|trans|sw_sanitize %}
     {% set label = label !== '' ? label : lineItem.label %}
 
-    {% if truncateLabel %}
-        {% if truncateLabelNumberCharacters === 60 %}
-            {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_default_before %}{% endblock %}
+    {% if truncateLabel and truncateLabelNumberCharacters === 60 %}
+        {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_default_before %}{% endblock %}
 
-            {{ parent() }}
+        {{ parent() }}
 
-            {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_default_after %}{% endblock %}
-        {% else %}
-            {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_custom_truncation %}
-                <div class="line-item-label">
-                    {{ label|u.truncate(truncateLabelNumberCharacters, '...', false)|raw }}
-                </div>
-            {% endblock %}
-        {% endif %}
+        {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_default_after %}{% endblock %}
+    {% elseif truncateLabel %}
+        {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_custom_truncation %}
+            <div class="line-item-label">
+                {{ label|u.truncate(truncateLabelNumberCharacters, '...', false)|raw }}
+            </div>
+        {% endblock %}
     {% else %}
         {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_custom_no_truncation %}
             <div class="line-item-label">
@@ -74,12 +69,12 @@
         {% endblock %}
     {% endif %}
 
-    {% set promotionDescription = promotionCustomFields['sschreier_promotion_description'] %}
+    {% set promotionDescription = promotionCustomFields['sschreier_promotion_description']|default(null) %}
 
     {% if promotionDescription %}
         {% block component_line_item_type_discount_label_customizingdisplaypromotionsincheckout_description %}
             <div class="line-item-promotion-description">
-                {{ promotionDescription|raw }}
+                {{ promotionDescription|sw_sanitize }}
             </div>
         {% endblock %}
     {% endif %}

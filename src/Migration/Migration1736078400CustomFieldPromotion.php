@@ -12,15 +12,12 @@ namespace Sschreier\CustomizingDisplayPromotionsInCheckout\Migration;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Shopware\Core\Defaults;
-use Shopware\Core\Framework\Migration\InheritanceUpdaterTrait;
 use Shopware\Core\Framework\Migration\MigrationStep;
 use Shopware\Core\Framework\Uuid\Uuid;
 use Shopware\Core\System\CustomField\CustomFieldTypes;
 
 final class Migration1736078400CustomFieldPromotion extends MigrationStep
 {
-    use InheritanceUpdaterTrait;
-
     public const FIELDSET_NAME = 'sschreier_promotion';
     public const CUSTOMFIELD_IMAGE_NAME = 'sschreier_promotion_image';
     public const CUSTOMFIELD_DESCRIPTION_NAME = 'sschreier_promotion_description';
@@ -95,7 +92,7 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
                 'id' => $customFieldRelationId,
                 'set_id' => $customFieldSetId,
                 'created_at' => self::getDateTimeValue(),
-                'entity_name' => 'promotion'
+                'entity_name' => 'promotion',
             ],
         );
     }
@@ -112,7 +109,7 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
     {
         return <<<SQL
                 INSERT INTO `custom_field` (`id`, `name`, `type`, `config`, `active`, `set_id`, `created_at`, `updated_at`, `allow_customer_write`) VALUES
-                (:id, :name, :fieldType, :config, 1, :set_id, :created_at, NULL, 1);
+                (:id, :name, :fieldType, :config, 1, :set_id, :created_at, NULL, 0);
             SQL;
     }
 
@@ -126,6 +123,6 @@ final class Migration1736078400CustomFieldPromotion extends MigrationStep
 
     protected static function getDateTimeValue(): string
     {
-        return (new \DateTime())->format(Defaults::STORAGE_DATE_TIME_FORMAT);
+        return (new \DateTimeImmutable())->format(Defaults::STORAGE_DATE_TIME_FORMAT);
     }
 }
